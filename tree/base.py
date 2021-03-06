@@ -123,26 +123,3 @@ class ArchOptimizer(pl.callbacks.Callback):
 
         self.restore(pl_module.root)
         self.optimizer.step()
-
-    # def on_train_epoch_start(self, trainer, pl_module):
-        # tensorboard = pl_module.logger.experiment
-        # tensorboard.add_histogram("gamma_bin", torch.cat(list(pl_module.root.gamma_parameters()), dim=0))
-
-    # def on_train_epoch_end(self, trainer, pl_module, outputs):
-    #     for batch_idx, (x, y) in enumerate(self.dataloader):
-    #         self.optimizer.zero_grad()
-    #         self.binarization(pl_module.root, self.epsilon)
-    #
-    #         x, y = x.to(pl_module.device), y.to(pl_module.device)
-    #         loss = pl_module.sharing_step((x, y), batch_idx)\
-    #                + self.l1 * torch.cat(list(pl_module.root.arch_parameters()), dim=0).sum()
-    #         loss.backward()
-    #
-    #         tensorboard = pl_module.logger.experiment
-    #         tensorboard.add_histogram(
-    #             "gamma_grad",
-    #             torch.cat([param.grad for param in pl_module.root.gamma_parameters() if param.grad is not None], dim=0)
-    #         )
-    #
-    #         self.restore(pl_module.root)
-    #         self.optimizer.step()
